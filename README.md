@@ -4,7 +4,7 @@
 [https://hub.docker.com/_/wordpress](https://hub.docker.com/_/wordpress)
 
 **docker-compose.yml**
-`
+```
 version: '3.9'
 services:
   wordpress:
@@ -32,7 +32,7 @@ services:
 volumes:
   wordpress:
   db:
-`
+```
 
 Create your docker-compose file and run `docker-compose up -d`
 
@@ -48,13 +48,13 @@ After copying the files, shutdown the container
 docker-compose down
 `
 and update wordpress volumes in your docker-compose.yml file
-`
+```
     volumes:
       - ./wordpress:/var/www/html
       - ./certs:/etc/ssl/certs:ro
       - ./default-ssl.conf:/etc/apache2/sites-available/default-ssl.conf:ro
       - ./docker-entrypoint.sh:/usr/local/bin/docker-entrypoint.sh:ro
-`
+```
 
 `./certs` - this is where your certificate will reside
 `./default-ssl.conf` - this is where the 443 configuration
@@ -90,20 +90,20 @@ add this at the bottom `127.0.0.1 custom.domain.local`
 ----------
 # Modify the 2 files
 change the last line of `docker-entrypoint.sh`
-`
+```
 a2enmod ssl
 a2ensite default-ssl
 service apache2 restart
 service apache2 stop
 exec "$@"
-`
+```
 
 modify the `default-ssl.conf`
-`
+```
 ServerName custom.domain.local
 SSLCertificateFile	/etc/ssl/certs/custom.domain.local.pem
 SSLCertificateKeyFile /etc/ssl/certs/custom.domain.local-key.pem
-`
+```
 
 ----------
 # YOU ARE GOOD TO GO
@@ -115,8 +115,6 @@ docker-compose up -d
 visit your wordpress site at `https://custom.domain.local`
 
 You now have SSL enable wordpress site. Enjoy!
-
-
 
 
 
