@@ -57,7 +57,9 @@ and update wordpress volumes in your docker-compose.yml file
 ```
 
 `./certs` - this is where your certificate will reside
+
 `./default-ssl.conf` - this is where the 443 configuration
+
 `./docker-entrypoint` - this run first before the web server starts
 
 ----------
@@ -80,7 +82,9 @@ Check the certificate in windows (located in MMC Certificate / current user)
 - Select `My user account` -> finish
 
 Under the Trusted Root Certification Authorities -> Certificates, locate the certificates created by mkcert
-you should find it there
+
+you should find it there ...
+
 
 ----------
 # Resolve custom domain name in browser via windows hosts
@@ -89,7 +93,7 @@ add this at the bottom `127.0.0.1 custom.domain.local`
 
 ----------
 # Modify the 2 files
-change the last line of `docker-entrypoint.sh`
+change the last line of `docker-entrypoint.sh`, exec "$@"
 ```
 a2enmod ssl
 a2ensite default-ssl
@@ -116,10 +120,13 @@ visit your wordpress site at `https://custom.domain.local`
 
 You now have SSL enable wordpress site. Enjoy!
 
+----------
+# References
+A simple setup for self-hosted WordPress on Docker with SSL
+[https://hackmd.io/@linnil1/H1p25uxFU](https://hackmd.io/@linnil1/H1p25uxFU)
 
-
-
-
+How to create Self-signed SSL Certificates in Windows 11/10
+[https://www.thewindowsclub.com/create-self-signed-ssl-certificates-in-windows-10](https://www.thewindowsclub.com/create-self-signed-ssl-certificates-in-windows-10)
 
 
 
